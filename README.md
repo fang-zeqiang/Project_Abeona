@@ -1,5 +1,10 @@
 # CASA0017-Web-Assessment
 Final assessment template for CASA0017
+## --- Updates 11/3/2021
+- sophie uploaded the demo site
+- pending decision on how to deal with the data file size (130mb is a pita)
+- whether to limit data scope to areas (London, Manchester, Birming)
+- needs decision: how many maps we producing??
 
 ## --- Updates 25/2/2021
 #### Feedbacks
