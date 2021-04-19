@@ -38,6 +38,7 @@ a {
 
 #console {
   position: absolute;
+  width: 400px;
   height: 450px; 
   margin: 30px;
   padding: 10px 20px;
@@ -77,14 +78,14 @@ a {
    <h2>Year <label id="active-year">: 2012</label></h2>
    <input id="slider" class="row" type="range" min="2012" max="2014" step="1" value="2012"/>
  </div>
-    <h2>Day of the week</h2>
+    <h2>Road Surface Condition</h2>
  <div class='row' id='filters1'>
     <input id='all' type='radio' name='toggle1' value='all' checked='checked'>
     <label for='all'>all</label><br />
-    <input id='weekday' type='radio' name='toggle1' value='weekday'>
-    <label for='weekday'>weekday</label><br />
-    <input id='weekend' type='radio' name='toggle1' value='weekend'>
-    <label for='weekend'>weekend</label><br />
+    <input id='dry' type='radio' name='toggle1' value='dry'>
+    <label for='dry'>dry</label><br />
+    <input id='wet/snow' type='radio' name='toggle1' value='wet/snow'>
+    <label for='wet/snow'>wet/snow</label><br />
  </div>    
     <h2>Light Condition</h2>
  <div class='row' id='filters2'>
@@ -111,14 +112,14 @@ a {
 
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/zhiyiqian/ckm26015v50u617lkphktzu4r?optimize=true',
+  style: 'mapbox://styles/mapbox/dark-v9',
   center: [-0.118092, 51.509865], 
   zoom: 10
 });
 
 map.on('load', function() {
   var filterYear = ['==', ['get', 'Year'], 2012];
-  var filterDay = ['!=', ['get', 'Day_of_Week'], 'placeholder'];
+  var filterRoad = ['!=', ['get', 'Road_Surface_Conditions'], 'placeholder'];
   var filterLight = ['!=', ['string', ['get', 'Light_Conditions']], 'placeholder'];
   var filterWeather = ['!=', ['string', ['get', 'Weather_Conditions']], 'placeholder'];
     
@@ -143,7 +144,7 @@ map.on('load', function() {
          [{zoom: 16, value: 3}, 4],
       ]}
     },
-      'filter': ['all', filterYear, filterDay, filterLight, filterWeather]
+      'filter': ['all', filterYear, filterRoad, filterLight, filterWeather]
   });
   
   var mypopup = new mapboxgl.Popup({offset:[1,1],closeButton: false});    
@@ -169,22 +170,22 @@ map.on('load', function() {
   document.getElementById('slider').addEventListener('input', function (e) {
     var Year = parseInt(e.target.value);
     filterYear = ['==', ['get', 'Year'], Year];
-    map.setFilter('data', ['all', filterYear, filterDay, filterLight, filterWeather]);
+    map.setFilter('data', ['all', filterYear, filterRoad, filterLight, filterWeather]);
     document.getElementById('active-year').innerText =': '+Year;
   });
         
   document.getElementById('filters1').addEventListener('change', function(e) {
-   var Day_of_Week = e.target.value;
-   if (Day_of_Week === 'all') {
-     filterDay = ['!=', ['get', 'Day_of_Week'], 'placeholder'];
-   } else if (Day_of_Week === 'weekday') {
-     filterDay = ['match', ['get', 'Day_of_Week'], [6,7], false, true];
-   } else if (Day_of_Week === 'weekend') {
-     filterDay = ['match', ['get', 'Day_of_Week'], [6,7], true, false];
+   var Road_Surface_Conditions = e.target.value;
+   if (Road_Surface_Conditions === 'all') {
+     filterRoad = ['!=', ['get', 'Road_Surface_Conditions'], 'placeholder'];
+   } else if (Road_Surface_Conditions === 'dry') {
+     filterRoad = ['match', ['get', 'Road_Surface_Conditions'], 'Dry', true, false];
+   } else if (Road_Surface_Conditions === 'wet/snow') {
+     filterRoad = ['match', ['get', 'Road_Surface_Conditions'], 'Dry', false, true];
    } else {
      console.log('error');
    }
-   map.setFilter('data', ['all', filterYear, filterDay, filterLight, filterWeather]);
+   map.setFilter('data', ['all', filterYear, filterRoad, filterLight, filterWeather]);
  });
     
   document.getElementById('filters2').addEventListener('change', function(e) {
@@ -203,7 +204,7 @@ map.on('load', function() {
    } else {
      console.log('error');
    }
-   map.setFilter('data', ['all', filterYear, filterDay, filterLight, filterWeather]);
+   map.setFilter('data', ['all', filterYear, filterRoad, filterLight, filterWeather]);
  });
     
   document.getElementById('filters3').addEventListener('change', function(e) {
@@ -223,7 +224,7 @@ map.on('load', function() {
    } else {
      console.log('error');
    }
-   map.setFilter('data', ['all', filterYear, filterDay, filterLight, filterWeather]);
+   map.setFilter('data', ['all', filterYear, filterRoad, filterLight, filterWeather]);
  });
 });   
 </script>  
