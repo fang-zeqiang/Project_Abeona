@@ -38,7 +38,7 @@
       var svg = dimple.newSvg("#chartContainer1", 800, 1200);
       d3.tsv("output2.tsv", function (data) {
         var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(100, 50, 700, 500);
+        myChart.setBounds(135, 50, 800, 600);
         myChart.addMeasureAxis("x", "Number");
         var y = myChart.addCategoryAxis("y", "Borough");
         y.addOrderRule("Number",false);
