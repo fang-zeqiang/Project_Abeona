@@ -22,6 +22,6 @@ Requirement Environment:
 1. Using `cd` to locate at project folder
 2. Input `npm install` in project root path, then you will see `node_modules` and `package-lock.json`
 3. Input `bower install` in the demoBackend/public folder, then you will see `bower_components`
-4. Create a new schema(database) called `casa-web` and insert table by importing the `accidents_london.json` file into this new created schema
+4. Create a new schema(database) called `casa-web` and insert data by excuting the `accidents_london.sql` file into this newly created schema
 5. Input `node server.js` to excute this demo
 6. Visit the address http://localhost:3000/index.html to see this demo
