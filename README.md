@@ -1,5 +1,14 @@
 # CASA0017-Web-Assessment
-Final assessment template for CASA0017
+
+Welcome to Jedi-team's space!
+
+
+`demoSite` This folder contain our website frontend demo, you can access our website in this [link](https://casa-ucl.github.io/casa0017---final-group-assignment-jedi/demoSite/index.html)
+
+`demoBackend` This folder is our backend demo, you can follow the tutorial in this folder to initialise a local backend example for data visualisation.
+
+Hope you enjoy that!
+
 ## --- Updates 11/3/2021
 - sophie uploaded the demo site
 - pending decision on how to deal with the data file size (130mb is a pita)
@@ -7,7 +16,8 @@ Final assessment template for CASA0017
 - needs decision: how many maps we producing??
 
 ## --- Updates 25/2/2021
-#### Feedbacks
+
+### Feedbacks
 - dislike piechart lol
 
 - think abt viz, the narrative?
@@ -20,7 +30,7 @@ Final assessment template for CASA0017
 
 ---
 
-#### Role sorting
+### Role sorting
 mapbox? 
 
 charts? d3/ echarts
