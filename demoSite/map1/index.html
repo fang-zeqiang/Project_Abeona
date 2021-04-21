@@ -127,13 +127,13 @@
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
             .attr("font-family", "Open Sans");
 
-        // 定义弹出提示框，鼠标mouseover时用于显示相关消息
+        // Define a pop-up box, which is used to display related messages when the mouseover
         var tooltip = d3.select("body")
             .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0.0);
 
-        // 生成弹出提示框的内容
+        // Generate the content of the pop-up box
         function tooltipContent(list, title) {
             var tpl = "<div style='margin-top:5px;'><span>"
             tpl += "{name}: </span>{value}</div>";
@@ -153,7 +153,7 @@
             var valueName = "count";
             maxValue += minValue;
 
-            // 枚举每周七天的星期
+            // Enumerate the seven days of the week. Also the related time point
             var weeks = [
                 "Monday",
                 "6AM",
@@ -205,7 +205,8 @@
             var color = function (value) {
                 return computeColor(colorLinear(value));
             };
-
+            
+            // 9 groups for 9 time scale lines
             var ga = svg.append("g")
                 .attr("class", "a axis")
                 .selectAll("g")
@@ -220,6 +221,7 @@
                 .attr("state", d => d)
                 .attr("x2", radius);
 
+            // Generate radial text and refer to Tree of life chart in D3 Gallery
             ga.append("text")
                 .attr("x", radius + 6)
                 .attr("dy", ".35em")
@@ -235,7 +237,7 @@
                 })
                 .text(function (d, i) { return d; });
 
-            //var color = d3.scaleOrdinal(d3.schemeCategory10);
+            // Use radial line drawing function
             var line = d3.lineRadial()
                 .angle(function (d) {
                     return axisScale(d[0]) + Math.PI / 2;
@@ -245,13 +247,13 @@
                 });
 
             for (var index = 0; index < datalist.length; index++) {
-                // 生成圆圈的数据
+                // Generate data for concentric circles
                 var dataValues = [];
                 datalist[index].forEach(function (item, i) {
                     var basicValue = item[valueName];
                     dataValues.push([
                         i * 15,
-                        basicValue  + minValue / datalist.length * (index + 1),
+                        basicValue  + minValue / datalist.length * (index + 1),   // In order to separate the 9 radial lines, a basic value is forced to increase before being converted to radius
                         item[weekName],
                         yearList[index],
                         item.time,
@@ -260,7 +262,7 @@
                 });
                 dataValues.push(dataValues[0]);
 
-                // 绘制圆圈
+                // Draw concentric circles
                 svg.selectAll(".area-" + index)
                     .data([dataValues])
                     .enter()
@@ -288,7 +290,7 @@
                             .style("stroke-width", "1px");
                     });
 
-                // 绘制散点
+                // Draw scatter points for hover
                 svg.selectAll(".circle-" + index)
                     .data(dataValues)
                     .enter()
@@ -313,14 +315,14 @@
                     .attr("r",0.5)
                     .style("fill", "none")
                     .on("mouseover", function (d, i) {
-                        // 生成信息框消息内容
+                      // Generate the message content of box
                         var strhtml = tooltipContent([
                             { name: "count", value: d[5] },
                             { name: "week", value: d[2] },
                             { name: "time", value: d[4] }
                         ], d[3]);
 
-                        // 弹出信息框
+                        // Show windows
                         tooltip.html(strhtml)
                             .style("width", "auto")
                             .style("height", "auto")
@@ -332,7 +334,7 @@
                             .style("stroke-width", "3px");
                     })
                     .on("mouseout", function () {
-                        // 隐藏信息框 
+                        // Hide windows
                         tooltip.style("width", 0)
                             .style("height", 0)
                             .style("opacity", 0.0);
