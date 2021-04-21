@@ -248,14 +248,14 @@
                 // 生成圆圈的数据
                 var dataValues = [];
                 datalist[index].forEach(function (item, i) {
-                    var violent = item[valueName];
+                    var basicValue = item[valueName];
                     dataValues.push([
                         i * 15,
-                        violent + minValue / datalist.length * (index + 1),
+                        basicValue  + minValue / datalist.length * (index + 1),
                         item[weekName],
                         yearList[index],
                         item.time,
-                        violent
+                        basicValue
                     ]);
                 });
                 dataValues.push(dataValues[0]);
