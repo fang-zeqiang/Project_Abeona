@@ -96,14 +96,14 @@
     let myChart3 = null;
 
 
-    //初始化地图
+    //Initialize the map
     mapboxgl.accessToken = 'pk.eyJ1IjoicmljOTIiLCJhIjoiY2ttNjFnbzEzMDRxNzJ2bGF3ZjIza3ExdiJ9.HEEieF4NwtWQcSRejRNhdw';
     let map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v9',
         bounds: [[-0.515681, 51.283617], [0.334266, 51.688150]]
     });
-    //加载本地数据
+    //Load local road network data
     map.on("load", () => {
         console.log("加载完成")
         map.addSource("road", {
@@ -188,7 +188,7 @@
         let myChart = echarts.init(
             document.getElementById("myChart")
         );
-        // 绘制图表
+        // Draw bar chart
         myChart.setOption({
             tooltip: {
                 trigger: 'axis'
@@ -228,7 +228,7 @@
         let myChart2 = echarts.init(
             document.getElementById("myChart2")
         );
-        // 绘制图表
+        // Draw line chart
         myChart2.setOption({
             title: {
                 text: "Percentage of Fatal Accidents \non 4 Road Classes",
@@ -276,7 +276,7 @@
 
     }
 
-    //显示隐藏切换
+    //Switch
     function translate() {
             $("#myChart").toggle();
             $("#myChart2").toggle();
@@ -286,7 +286,7 @@
         translate();
     })
 
-    //改变底部表格和文字
+    //Change table and text on the bottom 
     function initChart3(data) {
         $("#text").html(data.text);
         $("#title").text(data.title);
@@ -295,7 +295,7 @@
                 document.getElementById("myChart3")
             );
         }
-        // 绘制图表
+        // Draw bar chart
         myChart3.setOption({
             color: ['#00BFFF'],
             tooltip: {
@@ -330,7 +330,7 @@
         });
     }
 
-    // 过滤切换事件
+    // Filter switching events
     $("input[type='radio']").on("change", function () {
         let val = $("input[name='type']:checked").val();
         console.log(val);
