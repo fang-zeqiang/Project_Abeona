@@ -15,6 +15,7 @@ This demo's technology involves Bootstrap, Highcharts, MySQL and Node.js Environ
 # Demo Start Tutorial
 
 Requirement Environment:
+
     - MySQL > 8.0
     - node > 11.0
     - bower 1.8 / npm > 6.7
@@ -24,4 +25,4 @@ Requirement Environment:
 3. Input `bower install` in the demoBackend/public folder, then you will see `bower_components`
 4. Create a new schema(database) called `casa-web` and insert data by excuting the `accidents_london.sql` file into this newly created schema
 5. Input `node server.js` to excute this demo
-6. Visit the address http://localhost:3000/index.html to see this demo
+6. Visit the address http://localhost:3000/ to see this demo
